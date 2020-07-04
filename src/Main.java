@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +16,13 @@ public class Main {
 
     public void init(){
         myFrame = new JFrame("Lobach");
+
+        Dimension sSize = Toolkit.getDefaultToolkit ().getScreenSize ();
+        myFrame.setBounds(0,0, sSize.width, sSize.height);
+        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        myFrame.setVisible(true);
+
         timer = new Timer(Data.friq, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
