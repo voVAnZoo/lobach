@@ -1,1 +1,1 @@
-=== lobach -- the Lobachevskian geometry graphics application===
+# lobach -- the Lobachevskian geometry graphics application
