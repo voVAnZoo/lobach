@@ -11,6 +11,10 @@ public class Cnumbers {
         re = real;
         im = imag;
     }
+    public Cnumbers(double real) {
+        re = real;
+        im = 0;
+    }
 
     // return a string representation of the invoking immersiveMath.Cnumbers object
     public String toString() {
@@ -143,4 +147,7 @@ public class Cnumbers {
 //        StdOut.println("tan(a)       = " + a.tan());
 //    }
 
+    public double scalarProduct(Cnumbers c) {
+    	return re * c.re() + im * c.im();
+    }
 }
