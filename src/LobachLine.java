@@ -31,17 +31,26 @@ class LobachLine {
 		}
 
 		// t = [(I,K) - R^2]/(K,l)
-		Cnumbers t = (new Cnumbers (K.scalarProduct(I) - R*R)).scale(1 / K.scalarProduct(l));
-		center = J.minus(l.times(t));
-		// System.out.println("(K,I) = " + K.scalarProduct(I));
-		// System.out.println("R = " + R);
-		// System.out.println("(K,I) - R^2= " + ((K.scalarProduct(I)) - R*R));
-		// System.out.println("J = " + J.toString());
-		// System.out.println("t = " + t.toString());
-		// System.out.println("center = " + center.toString());
+		double t = (R*R - K.scalarProduct(I)) / K.scalarProduct(l) / 2;
+		center = J.plus(l.scale(t));
 	}
 
 	public String toString() {
 		return center.toString();
 	}
+	public double radius(){
+		// Euclidean straight line case 
+		if (center.abs() < R) return Double.POSITIVE_INFINITY;
+		// If circles with center O and radius R
+		// is orthogonal to circle with center O' and radius R',
+		// R^2 + R'^2 = OO'^2
+		return Math.sqrt(center.abs()*center.abs() - R*R);
+	}
+	public double euclideanDistance(Cnumbers x){
+		// Euclidean straight line case 
+		if (center.abs() < R) return center.scalarProduct(x);
+		// sqrt((x - x_0)^2 + (y - y_0)^2) - radius
+		return center.minus(x).abs() - radius();
+	}
+
 }
