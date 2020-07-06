@@ -38,19 +38,30 @@ class LobachLine {
 	public String toString() {
 		return center.toString();
 	}
+	public boolean isEuclideanLine() { 
+		return center.abs() < R;
+	}
 	public double radius(){
-		// Euclidean straight line case 
-		if (center.abs() < R) return Double.POSITIVE_INFINITY;
+		if (isEuclideanLine()) return Double.POSITIVE_INFINITY;
 		// If circles with center O and radius R
 		// is orthogonal to circle with center O' and radius R',
 		// R^2 + R'^2 = OO'^2
 		return Math.sqrt(center.abs()*center.abs() - R*R);
 	}
 	public double euclideanDistance(Cnumbers x){
-		// Euclidean straight line case 
-		if (center.abs() < R) return center.scalarProduct(x);
+		if (isEuclideanLine()) return center.scalarProduct(x);
 		// sqrt((x - x_0)^2 + (y - y_0)^2) - radius
 		return center.minus(x).abs() - radius();
 	}
-
+	public Cnumbers reflect(Cnumbers x){
+		if (isEuclideanLine()){
+			// x -> x - (x,n)n/n^2 where
+			// n = center
+			return x.minus(center.scale(x.scalarProduct(center)/(center.abs()*center.abs())));
+		} 
+		// x -> (c + r^2/(x - c)*) where
+		// * is conjugation,
+		// r is a radius
+		return center.plus(x.minus(center).reciprocal().conjugate().scale(radius()*radius()));
+	}
 }
