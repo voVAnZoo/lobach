@@ -150,4 +150,7 @@ public class Cnumbers {
     public double scalarProduct(Cnumbers c) {
     	return re * c.re() + im * c.im();
     }
+    public static Cnumbers i(){
+    	return new Cnumbers(0,1);
+    }
 }
