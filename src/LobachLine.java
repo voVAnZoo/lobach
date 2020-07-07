@@ -63,5 +63,33 @@ class LobachLine {
 		// * is conjugation,
 		// r is a radius
 		return center.plus(x.minus(center).reciprocal().conjugate().scale(radius()*radius()));
+	}	
+	// normal passing through the point x
+	public LobachLine normal(Cnumbers x) {
+		// if line doesn't contain x, the normal is line xx', where
+		// x and x' are symmetric with respect to the line
+		if (euclideanDistance(x) != 0) return new LobachLine(x,reflect(x));
+		if (isEuclideanLine()){
+			// if x is zero, normal is a euclidean straight line
+			if (x.equals(new Cnumbers(0))) return new LobachLine(center.multiply(Cnumbers.i()));
+			// otherwise let N be a center of normal 
+			// line OX contains N, and |NX| equals to the radius of normal
+			// let OX = t NX
+			// disc of lobachevsky plate is orthogonal to the normal:
+			// (t+1)^2 |OX|^2 = |ON|^2 = |NX|^2 + R^2 = t^2 |OX|^2 + R^2
+			// so t = (R^2 - |OX|^2)/(2|OX|^2)
+			// ON = OX + lt where l = OX
+			Cnumbers l = x;
+		}
+		// let N be a center of normal 
+		// tangent contains N, and |NX| equals to the radius of normal
+		// let l be direction vector of the tangent
+		Cnumbers l = x.minus(center).multiply(Cnumbers.i());
+		// disc of lobachevsky plate is orthogonal to the normal:
+		// |ON|^2 = |NX|^2 + R^2
+		// ... so t = (R^2 - |OX|^2)/(2(OX,l))
+		// ON = OX + lt 
+		double t = (R*R - x.abs()*x.abs())/(2*x.scalarProduct(l));
+		return new LobachLine(x.plus(l.scale(t)));
 	}
 }
