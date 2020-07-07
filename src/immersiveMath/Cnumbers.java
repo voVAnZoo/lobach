@@ -51,7 +51,7 @@ public class Cnumbers {
     }
 
     // return a new immersiveMath.Cnumbers object whose value is (this * b)
-    public Cnumbers times(Cnumbers b) {
+    public Cnumbers multiply(Cnumbers b) {
         Cnumbers a = this;
         double real = a.re * b.re - a.im * b.im;
         double imag = a.re * b.im + a.im * b.re;
@@ -81,7 +81,7 @@ public class Cnumbers {
     // return a / b
     public Cnumbers divides(Cnumbers b) {
         Cnumbers a = this;
-        return a.times(b.reciprocal());
+        return a.multiply(b.reciprocal());
     }
 
     // return a new immersiveMath.Cnumbers object whose value is the complex exponential of this
@@ -138,10 +138,10 @@ public class Cnumbers {
 //        StdOut.println("Im(a)        = " + a.im());
 //        StdOut.println("b + a        = " + b.plus(a));
 //        StdOut.println("a - b        = " + a.minus(b));
-//        StdOut.println("a * b        = " + a.times(b));
-//        StdOut.println("b * a        = " + b.times(a));
+//        StdOut.println("a * b        = " + a.multiply(b));
+//        StdOut.println("b * a        = " + b.multiply(a));
 //        StdOut.println("a / b        = " + a.divides(b));
-//        StdOut.println("(a / b) * b  = " + a.divides(b).times(b));
+//        StdOut.println("(a / b) * b  = " + a.divides(b).multiply(b));
 //        StdOut.println("conj(a)      = " + a.conjugate());
 //        StdOut.println("|a|          = " + a.abs());
 //        StdOut.println("tan(a)       = " + a.tan());

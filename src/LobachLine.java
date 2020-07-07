@@ -22,7 +22,7 @@ class LobachLine {
 		// J is a center of segment IK
 		Cnumbers J = I.plus(K).scale(0.5);
 		// l is a perpendicular bisector to the segment IK
-		Cnumbers l = I.minus(K).times(new Cnumbers(0,1));
+		Cnumbers l = I.minus(K).multiply(new Cnumbers(0,1));
 
 		// Euclidean straight line passing zero point case 
 		if (K.scalarProduct(l) == 0){
