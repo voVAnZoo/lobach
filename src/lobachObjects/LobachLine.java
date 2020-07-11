@@ -1,4 +1,8 @@
+package lobachObjects;
+
 import immersiveMath.Cnumbers;
+
+
 
 class LobachLine {
 	// Class of line in Lobachevskian plane.
