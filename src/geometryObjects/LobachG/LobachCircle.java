@@ -1,6 +1,8 @@
 package geometryObjects.LobachG;
 
-public class LobachCircle {
+import geometryObjects.LobachObject;
+
+public class LobachCircle extends LobachObject {
     double r;
     double center;
 

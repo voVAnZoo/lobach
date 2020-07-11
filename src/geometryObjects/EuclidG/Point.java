@@ -1,4 +1,8 @@
 package geometryObjects.EuclidG;
 
-public class Point {
+import geometryObjects.LobachObject;
+import immersiveMath.Cnumbers;
+
+public class Point extends LobachObject {
+
 }

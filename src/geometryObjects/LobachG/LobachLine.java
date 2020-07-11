@@ -1,10 +1,11 @@
 package geometryObjects.LobachG;
 
 import core.Data;
+import geometryObjects.LobachObject;
 import immersiveMath.Cnumbers;
 
 
-class LobachLine {
+class LobachLine extends LobachObject {
 	// Class of line in Lobachevskian plane.
 	// We use the Poincare disk model.
 	// A line is Euclidean circle with center out of plane (1)

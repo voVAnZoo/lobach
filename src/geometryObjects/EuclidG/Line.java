@@ -1,4 +1,6 @@
 package geometryObjects.EuclidG;
 
-public class Line {
+import geometryObjects.LobachObject;
+
+public class Line extends LobachObject {
 }
