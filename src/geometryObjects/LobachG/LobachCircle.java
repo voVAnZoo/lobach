@@ -1,5 +1,6 @@
 package geometryObjects.LobachG;
 
+import geometryObjects.EuclidObject;
 import geometryObjects.LobachObject;
 
 public class LobachCircle extends LobachObject {
@@ -15,4 +16,8 @@ public class LobachCircle extends LobachObject {
     }
 
 
+    @Override
+    public EuclidObject toEuclidObject() {
+        return null;
+    }
 }

@@ -1,6 +1,7 @@
 package geometryObjects.LobachG;
 
 import core.Data;
+import geometryObjects.EuclidObject;
 import geometryObjects.LobachObject;
 import immersiveMath.Cnumbers;
 
@@ -96,5 +97,10 @@ class LobachLine extends LobachObject {
 		// ON = OX + lt 
 		double t = (R*R - x.abs()*x.abs())/(2*x.scalarProduct(l));
 		return new LobachLine(x.plus(l.scale(t)));
+	}
+
+	@Override
+	public EuclidObject toEuclidObject() {
+		return null;
 	}
 }
