@@ -1,4 +1,6 @@
 package geometryObjects;
 
-public class LobachObject extends GeometryObject {
+public abstract  class LobachObject extends GeometryObject {
+
+    public abstract  EuclidObject toEuclidObject ();
 }

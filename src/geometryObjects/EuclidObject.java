@@ -1,4 +1,4 @@
 package geometryObjects;
 
-public class EuclidObject extends GeometryObject {
+public abstract  class EuclidObject extends GeometryObject {
 }
