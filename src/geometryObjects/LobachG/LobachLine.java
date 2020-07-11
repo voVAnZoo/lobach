@@ -1,7 +1,7 @@
-package lobachObjects;
+package geometryObjects.LobachG;
 
+import core.Data;
 import immersiveMath.Cnumbers;
-
 
 
 class LobachLine {

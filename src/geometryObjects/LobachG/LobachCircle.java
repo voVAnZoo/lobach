@@ -1,4 +1,4 @@
-package lobachObjects;
+package geometryObjects.LobachG;
 
 public class LobachCircle {
     double r;

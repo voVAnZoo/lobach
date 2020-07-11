@@ -1,6 +1,6 @@
-package lobachObjects;
+package core;
 
 public class Data {
     public static int friq = 100;
-    static double R = 1;
+    public static double R = 1;
 }
