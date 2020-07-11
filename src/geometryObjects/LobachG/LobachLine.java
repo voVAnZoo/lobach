@@ -3,6 +3,8 @@ package geometryObjects.LobachG;
 import core.Data;
 import geometryObjects.EuclidObject;
 import geometryObjects.LobachObject;
+import geometryObjects.EuclidG.Line;
+import geometryObjects.EuclidG.Circle;
 import immersiveMath.Cnumbers;
 
 
@@ -101,6 +103,9 @@ class LobachLine extends LobachObject {
 
 	@Override
 	public EuclidObject toEuclidObject() {
-		return null;
+		if (isEuclideanLine()){
+			return new Line(center);
+		}
+		return new Circle(center, radius());
 	}
 }
