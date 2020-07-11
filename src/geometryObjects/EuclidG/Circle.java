@@ -1,8 +1,8 @@
 package geometryObjects.EuclidG;
 
-import geometryObjects.LobachObject;
+import geometryObjects.EuclidObject;
 
-public class Circle extends LobachObject {
+public class Circle extends EuclidObject {
     double r;
     double center;
 }
