@@ -27,4 +27,9 @@ public class LobachCircle extends LobachObject {
 	    double euclidRadius   = Math.abs((w2 - w1) / 2);
         return new Circle(euclidCenter, euclidRadius);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return false;
+    }
 }

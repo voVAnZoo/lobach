@@ -108,4 +108,9 @@ public class LobachLine extends LobachObject {
 		}
 		return new Circle(center, radius());
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return false;
+	}
 }

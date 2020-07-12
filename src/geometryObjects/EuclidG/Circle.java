@@ -1,15 +1,18 @@
 package geometryObjects.EuclidG;
 
 import geometryObjects.EuclidObject;
-			 import immersiveMath.Cnumbers;
+import immersiveMath.Cnumbers;
 
 public class Circle extends EuclidObject {
+
     double r;
     Cnumbers center;
+
     public Circle(Cnumbers C, double R){
     	center = C; 
     	r = R; 
     }
+    @Override
 	public boolean equals(Object x) {
 		if (x == null) return false;
 		if (this.getClass() != x.getClass()) return false;
