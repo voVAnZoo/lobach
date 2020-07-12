@@ -8,7 +8,7 @@ import java.util.List;
 
 public class GeometryObject {
 
-    public static List<Point> intersection(EuclidObject a, EuclidObject b){
+    public static List<Point> intersection(EuclidObject a, EuclidObject b)throws IntersecException {
         if(a.getClass() == Point.class){
             if(b.getClass() == Point.class){
                 return intersection((Point) a, (Point)b);
