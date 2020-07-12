@@ -59,6 +59,19 @@ public class GeometryObject {
     public static List<Point> intersection(Circle a, Circle b){
         List<Point> out = new ArrayList<Point>();
 
+
+        if(a.getCenter().minus(b.getCenter()).abs() == a.getR() + b.getR()){
+
+        }
+
+        if((a.getR() >= b.getR()) && (a.getCenter().minus(b.getCenter()).abs() + b.getR() == a.getR())){
+
+        }
+
+        if((b.getR() >= a.getR()) && (a.getCenter().minus(b.getCenter()).abs() + a.getR() == b.getR())){
+
+        }
+
         if(a.getCenter().minus(b.getCenter()).abs() < a.getR() + b.getR()) {
             double A = (b.getCenter().re() - a.getCenter().re());
             double B = (b.getCenter().im() - a.getCenter().im());
