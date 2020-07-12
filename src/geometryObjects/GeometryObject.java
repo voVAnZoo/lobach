@@ -59,30 +59,28 @@ public class GeometryObject {
     public static List<Point> intersection(Circle a, Circle b){
         List<Point> out = new ArrayList<Point>();
 
-        double A = (b.getCenter().re() - a.getCenter().re());
-        double B = (b.getCenter().im() - a.getCenter().im());
-        double C = (A*A) + (B*B) + (a.getR()*a.getR()) - (b.getR()*b.getR());
-        A *= (-2);
-        B *= (-2);
+        if(a.getCenter().minus(b.getCenter()).abs() < a.getR() + b.getR()) {
+            double A = (b.getCenter().re() - a.getCenter().re());
+            double B = (b.getCenter().im() - a.getCenter().im());
+            double C = (A * A) + (B * B) + (a.getR() * a.getR()) - (b.getR() * b.getR());
+            A *= (-2);
+            B *= (-2);
 
-        double a2 = (A*A) + (B*B);
-        double b2 = (-2)*C*B;
-        double c2 = (C*C) - (A*A*a.getR()*a.getR());
+            double a2 = (A * A) + (B * B);
+            double b2 = (-2) * C * B;
+            double c2 = (C * C) - (A * A * a.getR() * a.getR());
 
-        double d = (b2*b2) - (4*a2*c2);
+            double d = (b2 * b2) - (4 * a2 * c2);
 
-        if (d == 0){
-            double y = -b2/(2*a2);
-            if (A != 0){
-                double x = (C - (B*y))/A;
-                //я хочу спать, О Великая Богиня Иштар, молю,
-                // пусть это код кто-нибудь допишет вместо меня
-                // зарание спасибо! =)
+            if (d == 0) {
+                double y = -b2 / (2 * a2);
+                if (A != 0) {
+                    double x = (C - (B * y)) / A;
+                    //я хочу спать, О Великая Богиня Иштар, молю,
+                    // пусть это код кто-нибудь допишет вместо меня
+                    // зарание спасибо! =)
+                }
             }
-        }
-
-        if (d >= 0){
-
         }
 
         return out;
