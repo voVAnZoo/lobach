@@ -3,8 +3,10 @@ package geometryObjects;
 import geometryObjects.EuclidG.Circle;
 import geometryObjects.EuclidG.Line;
 import geometryObjects.EuclidG.Point;
+import immersiveMath.Cnumbers;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class GeometryObject {
 
@@ -59,11 +61,23 @@ public class GeometryObject {
     }
 
     public static List<Point> intersection(Point a, Point b){
-        return null;
+        return new ArrayList<Point>();
     }
 
     public static List<Point> intersection(Line a, Line b){
-        return null;
+	List<Point> out = new ArrayList<Point>();
+    	if (a.getNormal().equals(b.getNormal())){
+		return out; 
+	}
+	// let tau be the directing vector; tau = n * i 
+	// the line equation is p + t tau
+	// ((tau_a t + p_a - p_b),n_b) = 0
+	// t = ((p_b - p_a),n_b)/(tau_a, n_b)
+	// the point of intersection is p_a + tau_a t
+	Cnumbers tau = a.getNormal().multiply(Cnumbers.i());
+	double t = b.getPoint().minus(a.getPoint()).scalarProduct(b.getNormal())/tau.scalarProduct(b.getNormal());
+	out.add(new Point(a.getPoint().plus(tau.scale(t))));
+	return out;
     }
 
     public static List<Point> intersection(Circle a, Point b){
