@@ -1,6 +1,18 @@
 package geometryObjects;
 
+import geometryObjects.EuclidG.Point;
+
+import java.util.List;
+
 public abstract  class LobachObject extends GeometryObject {
 
-    public abstract  EuclidObject toEuclidObject ();
+    public abstract EuclidObject toEuclidObject();
+
+    public List<Point> intersection (EuclidObject a){
+        return GeometryObject.intersection(this.toEuclidObject(), a);
+    }
+
+    public List<Point> intersection (LobachObject a){
+        return GeometryObject.intersection(this.toEuclidObject(), a.toEuclidObject());
+    }
 }
