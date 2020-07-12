@@ -9,10 +9,10 @@ public abstract  class LobachObject extends GeometryObject {
     public abstract EuclidObject toEuclidObject();
 
     public List<Point> intersection (EuclidObject a){
-        return Intersection.inter(this, a);
+        return GeometryObject.intersection(this.toEuclidObject(), a);
     }
 
     public List<Point> intersection (LobachObject a){
-        return Intersection.inter(this, a);
+        return GeometryObject.intersection(this.toEuclidObject(), a.toEuclidObject());
     }
 }

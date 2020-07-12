@@ -7,10 +7,10 @@ import java.util.List;
 public abstract  class EuclidObject extends GeometryObject {
 
     public List<Point> intersection (EuclidObject a){
-        return Intersection.inter(this, a);
+        return GeometryObject.intersection(this, a);
     }
 
     public List<Point> intersection (LobachObject a){
-        return Intersection.inter(this, a);
+        return GeometryObject.intersection(this, a.toEuclidObject());
     }
 }
