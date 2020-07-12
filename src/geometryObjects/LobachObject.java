@@ -20,7 +20,7 @@ public abstract  class LobachObject extends GeometryObject {
 
     public List<Point> intersection (LobachObject a) throws IntersecException {
         IntersecException e = new IntersecException("Objects are equal");
-        if(this.toEuclidObject().equals(a)){
+        if(this.toEuclidObject().equals(a.toEuclidObject())){
             throw e;
         }
         return GeometryObject.intersection(this.toEuclidObject(), a.toEuclidObject());
