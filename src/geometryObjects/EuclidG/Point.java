@@ -6,8 +6,13 @@ import immersiveMath.Cnumbers;
 public class Point extends EuclidObject {
 
     Cnumbers p;
+
     public Point(Cnumbers p){
     	this.p = p;
+    }
+
+    public Cnumbers getP(){
+        return p;
     }
 
     @Override

@@ -5,13 +5,22 @@ import immersiveMath.Cnumbers;
 
 public class Circle extends EuclidObject {
 
-    double r;
+	double r;
     Cnumbers center;
 
     public Circle(Cnumbers C, double R){
     	center = C; 
     	r = R; 
     }
+
+	public double getR() {
+		return r;
+	}
+
+	public Cnumbers getCenter() {
+		return center;
+	}
+
     @Override
 	public boolean equals(Object x) {
 		if (x == null) return false;
