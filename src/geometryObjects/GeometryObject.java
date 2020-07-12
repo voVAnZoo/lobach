@@ -7,6 +7,7 @@ import geometryObjects.EuclidG.Point;
 import java.util.List;
 
 public class GeometryObject {
+
     public static List<Point> intersection(EuclidObject a, EuclidObject b){
         if(a.getClass() == Point.class){
             if(b.getClass() == Point.class){
@@ -28,7 +29,7 @@ public class GeometryObject {
             }
 
             if(b.getClass() == Line.class){
-                return intersection((Line) a, (Line) b);
+                return intersection((Line) b, (Line) a);
             }
 
             if(b.getClass() == Circle.class){
@@ -46,7 +47,7 @@ public class GeometryObject {
             }
 
             if(b.getClass() == Circle.class){
-                return intersection((Circle) b, (Circle) a);
+                return intersection((Circle) a, (Circle) b);
             }
         }
 
