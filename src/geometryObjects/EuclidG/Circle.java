@@ -1,7 +1,7 @@
 package geometryObjects.EuclidG;
 
 import geometryObjects.EuclidObject;
-import immersiveMath.Cnumbers;
+			 import immersiveMath.Cnumbers;
 
 public class Circle extends EuclidObject {
     double r;
@@ -10,4 +10,11 @@ public class Circle extends EuclidObject {
     	center = C; 
     	r = R; 
     }
+	public boolean equals(Object x) {
+		if (x == null) return false;
+		if (this.getClass() != x.getClass()) return false;
+		Circle that = (Circle) x;
+		return (that.r == this.r) && (this.center.equals(that.center));
+	}
+
 }
