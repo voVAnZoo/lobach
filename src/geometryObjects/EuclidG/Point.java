@@ -5,7 +5,7 @@ import immersiveMath.Cnumbers;
 
 public class Point extends EuclidObject {
 
-    Cnumbers p;
+    private Cnumbers p;
 
     public Point(Cnumbers p){
     	this.p = p;
@@ -22,4 +22,11 @@ public class Point extends EuclidObject {
 		Point that = (Point) x;
 		return this.p == that.p;
 	}
+    
+    public double euclideanDistance(Point x){
+        return this.getP().euclideanDistance(x.getP());
+    }
+    public double lobachDistance(Point x){
+        return this.getP().lobachDistance(x.getP());
+    }
 }

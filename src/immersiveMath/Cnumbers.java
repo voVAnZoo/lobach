@@ -1,6 +1,7 @@
 package immersiveMath;
 
 import java.util.Objects;
+import immersiveMath.hyperbolicFunctions;
 
 public class Cnumbers {
     private final double re;   // the real part
@@ -152,5 +153,14 @@ public class Cnumbers {
     }
     public static Cnumbers i(){
     	return new Cnumbers(0,1);
+    }
+    public double euclideanDistance(Cnumbers x){
+        return this.minus(x).abs();
+    }
+    public double lobachDistance(Cnumbers x){
+        // d(x,y) = arth| (x - y) / ( 1 - xy*) where
+        // * is conjugation
+        return hyperbolicFunctions.arth(this.minus(x).divides(
+            (new Cnumbers (1)).minus(this.multiply(x.conjugate()))).abs());
     }
 }
