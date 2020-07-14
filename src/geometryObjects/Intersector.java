@@ -3,14 +3,42 @@ package geometryObjects;
 import geometryObjects.EuclidG.Circle;
 import geometryObjects.EuclidG.Line;
 import geometryObjects.EuclidG.Point;
-import immersiveMath.Cnumbers;
+import immersiveMath.Complex;
 
 import java.util.List;
 import java.util.ArrayList;
 
-public class GeometryObject {
+public class Intersector {
 
-    public static List<Point> intersection(EuclidObject a, EuclidObject b) {
+    public static List<Point> intersection(Object a1, Object b1) throws IntersecException {
+        EuclidObject a = null;
+        EuclidObject b = null;
+
+        if (a1 instanceof LobachObject) {
+            a = ((LobachObject) a1).toEuclidObject();
+        }
+        if (a1 instanceof EuclidObject) {
+            a = (EuclidObject) a1;
+        }
+
+        if (b1 instanceof LobachObject) {
+            b = ((LobachObject) b1).toEuclidObject();
+        }
+        if (b1 instanceof EuclidObject) {
+            b = (EuclidObject) b1;
+        }
+
+        if ((a != null) && (b != null)){
+            return intersection(a, b);
+        }else {
+            throw new IntersecException("Null Object");
+        }
+    }
+
+    private static List<Point> intersection(EuclidObject a, EuclidObject b) throws IntersecException {
+        if(a.equals(b)){
+            throw new IntersecException("Objects are equal");
+        }
         if(a.getClass() == Point.class){
             if(b.getClass() == Point.class){
                 return intersection((Point) a, (Point)b);
@@ -56,21 +84,21 @@ public class GeometryObject {
         return null;
     }
 
-    public static List<Point> intersection(Circle a, Circle b){
+    private static List<Point> intersection(Circle a, Circle b){
         List<Point> out = new ArrayList<Point>();
 
         // let the first circl be the bigest one
-        if (a.getR() < b.getR()){
+        if (a.getRadius() < b.getRadius()){
             Circle tmp = a;
             a = b;
             b = tmp;
         }
         // r1 > r2
-        double r1 = a.getR();
-        double r2 = b.getR();
-        Cnumbers o1 = a.getCenter();
-        Cnumbers o2 = b.getCenter();
-        double o1o2 = o1.minus(o2).abs();
+        double r1 = a.getRadius();
+        double r2 = b.getRadius();
+        Complex o1 = a.getCenter();
+        Complex o2 = b.getCenter();
+        double o1o2 = o1.sub(o2).abs();
         // the o2 lies inside the first circle 
         if (o1o2 < r1){
             if (o1o2 + r2 < r1) {
@@ -78,7 +106,7 @@ public class GeometryObject {
             }
             // contact case
             if (o1o2 + r2 == r1) {
-                Cnumbers contactP = o1.plus(o2.minus(o1).scale(r1/o1o2));
+                Complex contactP = o1.add(o2.sub(o1).mul(r1/o1o2));
                 out.add(new Point(contactP));
                 return out;
             }
@@ -89,7 +117,7 @@ public class GeometryObject {
             }
             // contact case
             if (o1o2 == r1 + r2) {
-                Cnumbers contactP = o1.plus(o2.minus(o1).scale(r1/o1o2));
+                Complex contactP = o1.add(o2.sub(o1).mul(r1/o1o2));
                 out.add(new Point(contactP));
                 return out;
             }
@@ -104,18 +132,18 @@ public class GeometryObject {
         // h is a heigh of intersection points on the radical axis
         double h = Math.sqrt(r1*r1 - o1q*o1q);
         // the points of intersection are o1 + (o2-o1)/o1o2 (o1q +- i h)
-        Cnumbers p1 = o1.plus(o2.minus(o1).scale(1/o1o2).multiply(new Cnumbers(o1q, h)));
+        Complex p1 = o1.add(o2.sub(o1).mul(1/o1o2).mul(new Complex(o1q, h)));
         out.add(new Point(p1));
-        Cnumbers p2 = o1.plus(o2.minus(o1).scale(1/o1o2).multiply(new Cnumbers(o1q, -h)));
+        Complex p2 = o1.add(o2.sub(o1).mul(1/o1o2).mul(new Complex(o1q, -h)));
         out.add(new Point(p2));
         return out;
     }
 
-    public static List<Point> intersection(Point a, Point b){
+    private static List<Point> intersection(Point a, Point b){
         return new ArrayList<Point>();
     }
 
-    public static List<Point> intersection(Line a, Line b){
+    private static List<Point> intersection(Line a, Line b){
 	    List<Point> out = new ArrayList<Point>();
 	    if (a.getNormal().equals(b.getNormal())){
 		    return out;
@@ -125,56 +153,56 @@ public class GeometryObject {
 	    // ((tau_a t + p_a - p_b),n_b) = 0
 	    // t = ((p_b - p_a),n_b)/(tau_a, n_b)
 	    // the point of intersection is p_a + tau_a t
-	    Cnumbers tau = a.getNormal().multiply(Cnumbers.i());
-	    double t = b.getPoint().minus(a.getPoint()).scalarProduct(b.getNormal())/tau.scalarProduct(b.getNormal());
-	    out.add(new Point(a.getPoint().plus(tau.scale(t))));
+	    Complex tau = a.getNormal().mul(Complex.i);
+	    double t = b.getPoint().sub(a.getPoint()).dot(b.getNormal())/tau.dot(b.getNormal());
+	    out.add(new Point(a.getPoint().add(tau.mul(t))));
 	    return out;
     }
 
-    public static List<Point> intersection(Circle a, Point b){
+    private static List<Point> intersection(Circle a, Point b){
         List<Point> out = new ArrayList<Point>();
 
-        if(b.getP().minus(a.getCenter()).abs() == a.getR()){
+        if(b.getPoint().sub(a.getCenter()).abs() == a.getRadius()){
             out.add(b);
         }
 
         return out;
     }
 
-    public static List<Point> intersection(Circle a, Line b){
+    private static List<Point> intersection(Circle a, Line b){
         List<Point> out = new ArrayList<Point>();
 
         //r^2 = |(p-c)|^2 + t(tan_(p-c)_ + _tan_ (p-c)) + t^2 (|tan|^2)
         //p-c = h
-        Cnumbers tan = b.getNormal().multiply(Cnumbers.i());
-        Cnumbers h = b.getPoint().minus(a.getCenter());
+        Complex tan = b.getNormal().mul(Complex.i);
+        Complex h = b.getPoint().sub(a.getCenter());
 
-        double c2 = (h.abs()*h.abs()) - (a.getR()*a.getR());
-        double b2 = (tan.multiply(h.conjugate()).plus(tan.conjugate().multiply(h))).re();
+        double c2 = (h.abs()*h.abs()) - (a.getRadius()*a.getRadius());
+        double b2 = (tan.mul(h.conjugate()).add(tan.conjugate().mul(h))).re();
         double a2 = tan.abs()*tan.abs();
 
         double d = b2*b2 - (4*a2*c2);
 
         if(d == 0){
             double t = -b2/(2*a2);
-            out.add(new Point(b.getPoint().plus(tan.scale(t))));
+            out.add(new Point(b.getPoint().add(tan.mul(t))));
         }
 
         if(d > 0){
             double t1 = (-b2 + Math.sqrt(d))/(2*a2);
             double t2 = (-b2 - Math.sqrt(d))/(2*a2);
 
-            out.add(new Point(b.getPoint().plus(tan.scale(t1))));
-            out.add(new Point(b.getPoint().plus(tan.scale(t2))));
+            out.add(new Point(b.getPoint().add(tan.mul(t1))));
+            out.add(new Point(b.getPoint().add(tan.mul(t2))));
         }
 
         return out;
     }
 
-    public static List<Point> intersection(Point a, Line b){
+    private static List<Point> intersection(Point a, Line b){
         List<Point> out = new ArrayList<Point>();
 
-        if(a.getP().minus(b.getPoint()).scalarProduct(b.getNormal()) == 0){
+        if(a.getPoint().sub(b.getPoint()).dot(b.getNormal()) == 0){
             out.add(a);
         }
         return out;

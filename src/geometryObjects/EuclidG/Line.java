@@ -1,33 +1,33 @@
 package geometryObjects.EuclidG;
 
-import immersiveMath.Cnumbers;
+import immersiveMath.Complex;
 import geometryObjects.EuclidObject;
 
 public class Line extends EuclidObject {
 
-	private Cnumbers point;
-	private Cnumbers normal;
+	private Complex point;
+	private Complex normal;
 
-	public Line(Cnumbers p, Cnumbers norm){
+	public Line(Complex p, Complex norm){
 		point = p;
 		normal = norm;
 	}
 
-	public Line(Cnumbers norm) {
-		point = new Cnumbers(0);
+	public Line(Complex norm) {
+		point = new Complex(0);
 		normal = norm;
 	}
 
-	public Cnumbers getNormal() {
+	public Complex getNormal() {
 	    return normal;
 	}
 
-	public Cnumbers getPoint() {
+	public Complex getPoint() {
 	    return point;
 	}
 
-	public double euclideanDistance(Cnumbers x){
-		return normal.scalarProduct(x) - normal.scalarProduct(point);
+	public double euclideanDistance(Complex x){
+		return normal.dot(x) - normal.dot(point);
 	}
 
 	public boolean equals(Object x) {

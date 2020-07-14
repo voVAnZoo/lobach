@@ -34,24 +34,8 @@ public class ImmersiveMath {
         return (a/euclideanAlgorithm(a,b))*b;
     }
 
-    public static Qnumbers sum(Qnumbers a, Qnumbers b){
-        return new Qnumbers((a.getNumerator()*b.getDenominator()) + (b.getNumerator()*a.getDenominator()),
-                a.getDenominator()*b.getDenominator());
-    }
-
-    public static Qnumbers subtract(Qnumbers a, Qnumbers b){
-        return new Qnumbers((a.getNumerator()*b.getDenominator()) - (b.getNumerator()*a.getDenominator()),
-                a.getDenominator()*b.getDenominator());
-    }
-
-    public static Qnumbers multiply(Qnumbers a, Qnumbers b){
-        return new Qnumbers(a.getNumerator()*b.getNumerator(),
-                a.getDenominator()*b.getDenominator());
-    }
-
-    public static Qnumbers division(Qnumbers a, Qnumbers b){
-        return new Qnumbers(a.getNumerator()*b.getDenominator(),
-                a.getDenominator()*b.getNumerator());
+    public static double arth(double x){
+        return 0.5 * Math.log((1 + x) / (1 - x));
     }
 
     public static int phi(int n){
@@ -73,7 +57,7 @@ public class ImmersiveMath {
         return ans;
     }
 
-//    public static int combination(int n, int k){
-//
-//    }
+    public static double CrossRatio(double a, double b, double c, double d){
+        return ((c - a) * (d - b) / ((c - b) * (d - a)));
+    }
 }

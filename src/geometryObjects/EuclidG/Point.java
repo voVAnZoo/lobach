@@ -1,18 +1,18 @@
 package geometryObjects.EuclidG;
 
 import geometryObjects.EuclidObject;
-import immersiveMath.Cnumbers;
+import immersiveMath.Complex;
 
 public class Point extends EuclidObject {
 
-    private Cnumbers p;
+    private Complex point;
 
-    public Point(Cnumbers p){
-    	this.p = p;
+    public Point(Complex p){
+    	this.point = p;
     }
 
-    public Cnumbers getP(){
-        return p;
+    public Complex getPoint(){
+        return point;
     }
 
     @Override
@@ -20,13 +20,14 @@ public class Point extends EuclidObject {
 		if (x == null) return false;
 		if (this.getClass() != x.getClass()) return false;
 		Point that = (Point) x;
-		return this.p == that.p;
+		return this.point == that.point;
 	}
     
     public double euclideanDistance(Point x){
-        return this.getP().euclideanDistance(x.getP());
+        return this.getPoint().euclideanDistance(x.getPoint());
     }
+
     public double lobachDistance(Point x){
-        return this.getP().lobachDistance(x.getP());
+        return this.getPoint().lobachDistance(x.getPoint());
     }
 }

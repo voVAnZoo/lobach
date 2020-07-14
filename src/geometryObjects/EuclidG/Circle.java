@@ -1,23 +1,23 @@
 package geometryObjects.EuclidG;
 
 import geometryObjects.EuclidObject;
-import immersiveMath.Cnumbers;
+import immersiveMath.Complex;
 
 public class Circle extends EuclidObject {
 
-	double r;
-    Cnumbers center;
+	double radius;
+    Complex center;
 
-    public Circle(Cnumbers C, double R){
+    public Circle(Complex C, double R){
     	center = C; 
-    	r = R; 
+    	radius = R;
     }
 
-	public double getR() {
-		return r;
+	public double getRadius() {
+		return radius;
 	}
 
-	public Cnumbers getCenter() {
+	public Complex getCenter() {
 		return center;
 	}
 
@@ -26,7 +26,7 @@ public class Circle extends EuclidObject {
 		if (x == null) return false;
 		if (this.getClass() != x.getClass()) return false;
 		Circle that = (Circle) x;
-		return (that.r == this.r) && (this.center.equals(that.center));
+		return (that.radius == this.radius) && (this.center.equals(that.center));
 	}
 
 }

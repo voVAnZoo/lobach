@@ -1,29 +1,29 @@
 package geometryObjects.LobachG;
 
 import core.Data;
-import immersiveMath.Cnumbers;
+import immersiveMath.Complex;
 import geometryObjects.EuclidObject;
 import geometryObjects.EuclidG.Circle;
 import geometryObjects.LobachObject;
 
 public class LobachCircle extends LobachObject {
-    Cnumbers center;
-    double r;
-    static double R;
+    Complex center;
+    double radius;
+    static double planeRadius;
 
-    public LobachCircle(Cnumbers center, double r ){
-        this.r = r;
+    public LobachCircle(Complex center, double r ){
+        this.radius = r;
         this.center = center;
-	    R = Data.R;
+	    planeRadius = Data.R;
     }
 
     @Override
     public EuclidObject toEuclidObject() {
 	    double c = center.abs();
-	    double A = (c - R)/(c + R);
-	    double w1 = R * (1 + A * Math.exp(r))/(1 - A * Math.exp(r));
-	    double w2 = R * (1 - A * Math.exp(-r))/(1 + A * Math.exp(-r));
-	    Cnumbers euclidCenter = center.scale((w1 + w2) / (2 * center.abs()));
+	    double A = (c - planeRadius)/(c + planeRadius);
+	    double w1 = planeRadius * (1 + A * Math.exp(radius))/(1 - A * Math.exp(radius));
+	    double w2 = planeRadius * (1 - A * Math.exp(-radius))/(1 + A * Math.exp(-radius));
+	    Complex euclidCenter = center.mul((w1 + w2) / (2 * center.abs()));
 	    double euclidRadius   = Math.abs((w2 - w1) / 2);
         return new Circle(euclidCenter, euclidRadius);
     }

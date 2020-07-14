@@ -67,7 +67,7 @@ public class Qnumbers {
     }
 
     public static int[] normalize(int numerator, int denominator){
-        int gcd = ImmersiveMath.euclideanAlgorithm(Math.abs(numerator),Math.abs(denominator));
+        int gcd = ImmersiveMath.gcd(Math.abs(numerator),Math.abs(denominator));
 
         numerator /= gcd;
         denominator /= gcd;
