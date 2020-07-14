@@ -1,7 +1,6 @@
 package immersiveMath;
 
 import java.util.Objects;
-import immersiveMath.hyperbolicFunctions;
 
 public class Cnumbers {
     private final double re;   // the real part
@@ -160,7 +159,7 @@ public class Cnumbers {
     public double lobachDistance(Cnumbers x){
         // d(x,y) = arth| (x - y) / ( 1 - xy*) where
         // * is conjugation
-        return hyperbolicFunctions.arth(this.minus(x).divides(
+        return HyperbolicFunctions.arth(this.minus(x).divides(
             (new Cnumbers (1)).minus(this.multiply(x.conjugate()))).abs());
     }
 }
